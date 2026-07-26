@@ -1,0 +1,17 @@
+{
+  "name": "ticketboard-codex-pilot-sandbox",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Synthetic Node.js sandbox for the manual Ticketboard/Codex pilot.",
+  "type": "module",
+  "engines": {
+    "node": "24.x"
+  },
+  "scripts": {
+    "format:check": "node scripts/format-check.mjs",
+    "lint": "node scripts/lint.mjs",
+    "test": "node --test",
+    "build": "node scripts/build.mjs",
+    "verify": "node scripts/verify.mjs"
+  }
+}

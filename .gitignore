@@ -1,0 +1,27 @@
+# Dependencies
+node_modules/
+
+# Disposable build output
+dist/
+
+# Environment and secret files
+.env
+.env.*
+
+# Test and coverage output
+coverage/
+test-results/
+playwright-report/
+reports/
+
+# Logs
+*.log
+npm-debug.log*
+
+# IDE and operating-system files
+.idea/
+.vscode/
+*.suo
+*.user
+.DS_Store
+Thumbs.db
