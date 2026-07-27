@@ -36,3 +36,34 @@ product repository.
 - Run `npm run verify` before proposing a pull request.
 - Keep code deterministic: no time, randomness, network access, or mutable
   global state.
+
+## Human-governed Ticketboard Codex pilot bootstrap
+
+The Ticketboard Codex pilot execution layer may be installed or updated
+only through a human-authored governance pull request.
+
+The governance exception is limited to:
+
+- `.github/workflows/ticketboard-codex-pilot.yml`
+- `.ticketboard/codex-pilot/**`
+
+The files must originate from the reviewed Ticketboard bootstrap
+manifest and must retain their reviewed SHA-256 values and immutable
+action pins.
+
+This governance exception does not apply to model-authored pilot work.
+
+For PILOT-1 and all Codex-generated changes, these paths remain
+forbidden:
+
+- `.github/**`
+- `.ticketboard/**`
+- `scripts/**`
+- `AGENTS.md`
+- `package.json`
+- `package-lock.json`
+- `.env`
+- credentials, keys, tokens, and environment files
+
+The model may modify only the exact allowed paths recorded in the
+approved Ticketboard agent run.

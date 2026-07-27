@@ -1,0 +1,102 @@
+{
+  "version": 1,
+  "repository": {
+    "fullName": "MaximeClonen/ticketboard-codex-pilot-sandbox",
+    "id": "1312323027",
+    "ownerId": "111045231",
+    "defaultBranch": "main"
+  },
+  "workflow": {
+    "path": ".github/workflows/ticketboard-codex-pilot.yml",
+    "ref": "refs/heads/main",
+    "audience": "ticketboard-agent-runner",
+    "publishEnvironment": "ticketboard-agent-publish",
+    "validateEnvironment": "ticketboard-agent-validate",
+    "eventName": "workflow_dispatch"
+  },
+  "codex": {
+    "actionSha": "52fe01ec70a42f454c9d2ebd47598f9fd6893d56",
+    "cliVersion": "0.145.0",
+    "model": "gpt-5.6-sol",
+    "permissionProfile": ":workspace",
+    "network": "disabled",
+    "maxRuntimeSeconds": 900
+  },
+  "limits": {
+    "costCeilingMinor": 500,
+    "costCurrency": "USD"
+  },
+  "resources": {
+    "maxCpuUnits": 2,
+    "maxMemoryMiB": 4096,
+    "maxDiskMiB": 8192,
+    "maxProcesses": 256,
+    "maxOpenFiles": 512
+  },
+  "source": {
+    "maxTrackedFiles": 500,
+    "maxTextFileBytes": 1048576,
+    "maxTotalBytes": 8388608,
+    "allowBinary": false
+  },
+  "patch": {
+    "allowedPaths": [
+      "README.md",
+      "src/task-summary.mjs",
+      "tests/task-summary.test.mjs"
+    ],
+    "forbiddenPaths": [
+      ".git/**",
+      ".github/**",
+      "AGENTS.md",
+      "package.json",
+      "package-lock.json",
+      "scripts/**",
+      "**/.env*",
+      "**/*.pem",
+      "**/*credential*"
+    ],
+    "forbiddenPrefixes": [
+      ".git/",
+      ".github/",
+      ".ticketboard/",
+      ".codex/",
+      "node_modules/",
+      "scripts/"
+    ],
+    "forbiddenBasenames": [
+      ".env",
+      "AGENTS.md",
+      "package-lock.json",
+      "package.json",
+      "pnpm-lock.yaml",
+      "yarn.lock"
+    ],
+    "maxChangedFiles": 3,
+    "maxDiffBytes": 32768,
+    "allowBinary": false,
+    "allowExecutableMode": false,
+    "allowSymlinks": false,
+    "allowSubmodules": false
+  },
+  "quarantine": {
+    "maxChangedFiles": 3,
+    "maxDiffBytes": 32768
+  },
+  "verification": {
+    "stepCodes": ["VERIFY"],
+    "commands": {
+      "VERIFY": ["npm", "run", "verify"]
+    },
+    "stepTimeoutSeconds": 120,
+    "totalTimeoutSeconds": 180
+  },
+  "publication": {
+    "draftOnly": true,
+    "branchPrefix": "codex/",
+    "directDefaultBranchPush": false,
+    "merge": false,
+    "deploy": false,
+    "workItemTransition": false
+  }
+}
