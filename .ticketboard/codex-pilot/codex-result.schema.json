@@ -1,0 +1,147 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "outcome",
+    "summary",
+    "filesChanged",
+    "tests",
+    "acceptanceCriteria",
+    "riskCodes",
+    "followUpCodes",
+    "recommendedRunStatus",
+    "recommendedWorkItemTransition",
+    "usage"
+  ],
+  "properties": {
+    "outcome": {
+      "type": "string",
+      "enum": ["PATCH_READY", "BLOCKED", "NO_CHANGE"]
+    },
+    "summary": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 1000
+    },
+    "filesChanged": {
+      "type": "array",
+      "maxItems": 3,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 160,
+        "enum": [
+          "README.md",
+          "src/task-summary.mjs",
+          "tests/task-summary.test.mjs"
+        ]
+      }
+    },
+    "tests": {
+      "type": "array",
+      "maxItems": 8,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["code", "status", "summary"],
+        "properties": {
+          "code": {
+            "type": "string",
+            "enum": [
+              "FORMAT_CHECK",
+              "LINT",
+              "TYPECHECK",
+              "UNIT_TESTS",
+              "INTEGRATION_TESTS",
+              "E2E",
+              "BUILD",
+              "VERIFY"
+            ]
+          },
+          "status": {
+            "type": "string",
+            "enum": ["PASSED", "FAILED", "NOT_RUN"]
+          },
+          "summary": {
+            "type": "string",
+            "maxLength": 240
+          }
+        }
+      }
+    },
+    "acceptanceCriteria": {
+      "type": "array",
+      "maxItems": 16,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["criterion", "status", "evidence"],
+        "properties": {
+          "criterion": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 240
+          },
+          "status": {
+            "type": "string",
+            "enum": ["MET", "NOT_MET", "NOT_VERIFIED"]
+          },
+          "evidence": {
+            "type": "string",
+            "maxLength": 400
+          }
+        }
+      }
+    },
+    "riskCodes": {
+      "type": "array",
+      "maxItems": 12,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^[A-Z][A-Z0-9_]{0,63}$"
+      }
+    },
+    "followUpCodes": {
+      "type": "array",
+      "maxItems": 12,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^[A-Z][A-Z0-9_]{0,63}$"
+      }
+    },
+    "recommendedRunStatus": {
+      "type": "string",
+      "enum": ["REVIEW_REQUIRED", "BLOCKED", "FAILED"]
+    },
+    "recommendedWorkItemTransition": {
+      "type": "string",
+      "enum": ["NONE"]
+    },
+    "usage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["inputTokens", "cachedInputTokens", "outputTokens"],
+      "properties": {
+        "inputTokens": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000000
+        },
+        "cachedInputTokens": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000000
+        },
+        "outputTokens": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000000
+        }
+      }
+    }
+  }
+}
